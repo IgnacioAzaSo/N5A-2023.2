@@ -1,100 +1,112 @@
 using System.Collections.Generic;
 using Moq;
+using starwars.DataAccess;
 using starwars.Exceptions;
 using starwars.IDataAccess;
 using static System.Net.Mime.MediaTypeNames;
 
-
+// USAR MSTEST, no Xunit o Nunit
 namespace starwars.BusinessLogic.Tests;
 
 [TestClass]
 public class CharacterTest
 {
-    private Mock<ICharacterManagment>? mock;
-    private CharacterService? service;
-    private Character? character;
-    private Character? nullCharacter;
-    private IEnumerable<Character>? characters;
-    private Character? invalidCharacter;
+    // DA1 -> Problema: Queremos testear CharacterService pero necesita de CharacterManagment
+    // Al instanciar CharacterManagment y usarlo estamos testeandolo indirectamente también
+    // Por ende, NO es un test unitario, sino de integración
+
+    // [TestMethod]
+    // public void InsertCharacterOk()
+    // {
+    //     // Arrange -> Setup del contexto
+    //     var character = new Character()
+    //     {
+    //         Id = 1,
+    //         Description = "Test",
+    //         Name = "Darth Nico",
+    //         ImageUrl = ""
+    //     };
+    //     var charactersManagement = new CharacterManagment(); -> ACA esta el problema, tmb testeo esta clase al instanciarla y usarla
+    //     var service = new CharacterService(charactersManagement);
+    //
+    //     //Act
+    //     service.InsertCharacter(character);
+    //
+    //     //Assert
+    //     Assert.IsTrue(true);
+    // }
+
+
+    // DA2 -> Queremos hacer tests unitarios
 
     [TestInitialize]
     public void InitTest()
     {
-        mock = new Mock<ICharacterManagment>(MockBehavior.Strict);
-        service = new CharacterService(mock.Object);
-        character = new Character()
-        {
-            Id = 1,
-            Description = "Test",
-            Name = "Darth Nico",
-            ImageUrl = ""
-        };
-        nullCharacter = null;
-        characters = new List<Character>() { character };
-        invalidCharacter = new Character() { Description = "", Id = 0, ImageUrl ="", Name=""};
+        // TODO: Mejorar usando TestInitialize
     }
 
-    [TestMethod]
-    public void InsertCharacterOk()
-    {
-        //Arrange
-        //Mock<ICharacterManagment>? mock = new Mock<ICharacterManagment>(MockBehavior.Strict);
-        //CharacterService? service2 = new CharacterService(mock.Object);
-        //character = new Character()
-        //{
-        //    Id = 1,
-        //    Description = "Test",
-        //    Name = "Darth Nico",
-        //    ImageUrl = ""
-        //};
+    // [TestMethod]
+    // public void GetAllCharactersOk()
+    // {
+    //     // Arrange
+    //     var character = new Character()
+    //     {
+    //         Id = 1,
+    //         Description = "Test",
+    //         Name = "Darth Nico",
+    //         ImageUrl = ""
+    //     };
+    //     var characters = new List<Character>() { character };
+    //
+    //     var characterManagerMock = new Mock<ICharacterManagment>(MockBehavior.Strict);
+    //     var service = new CharacterService(characterManagerMock.Object);
+    //
+    //     // Setup del mock
+    //     characterManagerMock.Setup(m => m.GetCharacters()).Returns(characters);
+    //
+    //     var result = service.GetCharacters();
+    //     CollectionAssert.AreEqual(result.ToList(), characters);
+    //
+    //     // Verifica que todo lo que hice setup se haya llamado
+    //     characterManagerMock.VerifyAll();
+    // }
 
-        //Act
-        mock!.Setup(x => x.InsertCharacter(character!));
-        service!.InsertCharacter(character!);
+    // [TestMethod]
+    // public void GetAllCharatersException()
+    // {
+    //     var characterManagerMock = new Mock<ICharacterManagment>(MockBehavior.Strict);
+    //     var service = new CharacterService(characterManagerMock.Object);
+    //
+    //     // Setup del mock
+    //     characterManagerMock.Setup(m => m.GetCharacters()).Throws(new Exception("hola"));
+    //
+    //     var result = service.GetCharacters();
+    //     Assert.IsTrue(result.ToList().Count == 0);
+    //
+    //     // Verifica que todo lo que hice setup se haya llamado
+    //     characterManagerMock.VerifyAll();
+    // }
 
-        //Assert
-        mock.VerifyAll();
-    }
-
-
-    [ExpectedException(typeof(Exception))]
-    [TestMethod]
-    public void InsertNullCharacter()
-    {
-        //Arrange
-        //Mock<ICharacterService>? mock;
-        //mock = new Mock<ICharacterService>(MockBehavior.Strict);
-        //CharacterService? service;
-        //service = new CharacterService();
-        //Character? nullcharacter = null;
-        //Act
-        service!.InsertCharacter(nullCharacter);
-        //Assert
-        mock!.VerifyAll();
-    }
-
-    [TestMethod]
-    public void GetAllCharacters()
-    {
-        mock!.Setup(x => x.GetCharacters()).Returns(characters!);
-        service!.GetCharacters();
-        mock.VerifyAll();
-    }
-
-    [ExpectedException(typeof(Exception))]
-    [TestMethod]
-    public void InsertInvalidCaracter()
-    {
-        service!.InsertCharacter(invalidCharacter!);
-        mock!.VerifyAll();
-    }
-
-    //[ExpectedException(typeof(NotFoundException))]
-    //[TestMethod]
-    //public void UpdateMovieNonExist()
-    //{
-    //    mock!.Setup(x => x.GetCharacterById(character!.Id)).Returns(nullCharacter);
-    //    service!.UpdateCharacter(character!);
-    //    mock.VerifyAll();
-    //}
+    // [TestMethod]
+    // public void AnotherTest()
+    // {
+    //     var character = new Character()
+    //     {
+    //         Id = 1,
+    //         Description = "Test",
+    //         Name = "Darth Nico",
+    //         ImageUrl = ""
+    //     };
+    //
+    //     var mock = new Mock<ICharacterManagment>(MockBehavior.Strict);
+    //     var service = new CharacterService(mock.Object);
+    //     
+    //     mock.Setup(m => m.GetCharacterById(It.IsAny<int>())).Returns(character);
+    //
+    //     var result = service.GetCharacterById(812);
+    //     Assert.AreEqual(character, result);
+    //
+    //     // Verifica que todo lo que hice setup se haya llamado
+    //     mock.VerifyAll();
+    // }
 }

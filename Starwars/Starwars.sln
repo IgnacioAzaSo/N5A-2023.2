@@ -19,6 +19,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "starwars.DataAccess", "star
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "starwars.Exceptions", "starwars.Exceptions\starwars.Exceptions.csproj", "{B32F7D7C-8499-4907-B0E1-0928E9E417ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Starwars.WebApi", "Starwars.WebApi\Starwars.WebApi.csproj", "{8B452FB8-9FA2-4C2D-9572-3F4CDD685426}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Starwars.WebApi.Test", "Starwars.WebApi.Test\Starwars.WebApi.Test.csproj", "{4C27A055-8580-4317-8CA9-CBD556C7EC88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +61,14 @@ Global
 		{B32F7D7C-8499-4907-B0E1-0928E9E417ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B32F7D7C-8499-4907-B0E1-0928E9E417ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B32F7D7C-8499-4907-B0E1-0928E9E417ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B452FB8-9FA2-4C2D-9572-3F4CDD685426}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B452FB8-9FA2-4C2D-9572-3F4CDD685426}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B452FB8-9FA2-4C2D-9572-3F4CDD685426}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B452FB8-9FA2-4C2D-9572-3F4CDD685426}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C27A055-8580-4317-8CA9-CBD556C7EC88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C27A055-8580-4317-8CA9-CBD556C7EC88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C27A055-8580-4317-8CA9-CBD556C7EC88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C27A055-8580-4317-8CA9-CBD556C7EC88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

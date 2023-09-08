@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\starwars.DataAccess\starwars.DataAccess.csproj" />
     <ProjectReference Include="..\starwars.IBusinessLogic\starwars.IBusinessLogic.csproj" />
     <ProjectReference Include="..\starwars.Domain\starwars.Domain.csproj" />
     <ProjectReference Include="..\starwars.BusinessLogic\starwars.BusinessLogic.csproj" />
